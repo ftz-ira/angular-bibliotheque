@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
-  errorMessage: string;
+  message: string;
   
 
   constructor(private authService: AuthService, private route: Router, private formBuilder: FormBuilder) { }
@@ -32,10 +32,11 @@ export class SigninComponent implements OnInit {
 
    this.authService.signInUser(email, password).then(
      ()=>{
-       this.route.navigate(['auth/signin']);
+      this.message = 'connected';
+       this.route.navigate(['books']);
      },
      (error) => {
-      this.errorMessage = error;
+      this.message = error;
      }
    );
 

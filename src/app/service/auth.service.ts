@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
+  isAuth: boolean;
 
   constructor() { }
 
@@ -28,7 +27,7 @@ export class AuthService {
       (resolve, reject) => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(
           () => {
-            resolve();
+            resolve( () => { });
           },
           (error) => {
             reject(error);

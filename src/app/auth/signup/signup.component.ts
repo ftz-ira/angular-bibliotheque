@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
-  errorMessage: string;
+  message: string;
   
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
@@ -34,10 +34,11 @@ export class SignupComponent implements OnInit {
 
     this.authService.createNewUser(email, password).then(
       () => {
-        this.router.navigate(['auth/signup']);
+        this.message= 'compte créer';
+        this.router.navigate(['books']);
       },
       (error)=> {
-        this.errorMessage = error;
+        this.message = error;
       }
     );
   }
